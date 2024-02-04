@@ -1,7 +1,7 @@
-import itemsAPI from "./items.api";
+import goodsAPI from "./goods.api";
 
 const api = {
-  items: itemsAPI,
+  goods: goodsAPI,
 };
 
 export default api;
