@@ -9,12 +9,12 @@ const options = {
 const getAllGoods = async () => {
   const response = await fetch(endpoint, options);
   const data = await response.json();
-  console.log(data);
   return data;
 };
 
-const getGood = async (productId) => {
-  const singleEndpoint = `${endpoint}/${productId}`;
+const getGood = async (goodId) => {
+  const singleEndpoint = `${endpoint}/${goodId}`;
+  console.log(singleEndpoint);
   const response = await fetch(singleEndpoint, options);
   const data = await response.json();
   return data;

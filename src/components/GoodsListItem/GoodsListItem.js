@@ -6,7 +6,9 @@ function GoodsListItem({ good }) {
   return (
     <Link to={`/goods/${good.id}`}>
       <img src={good.img_i} alt={good.goodsnm} />
+      <h4>{good.brandnm_kr}</h4>
       <h6>{good.goodsnm}</h6>
+      <h6>{good.price}원</h6>
     </Link>
   );
 }
