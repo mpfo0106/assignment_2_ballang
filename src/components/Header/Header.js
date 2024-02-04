@@ -56,19 +56,6 @@ function Header() {
         )}
       </section>
     </div>
-
-    /* <section>
-        <ul className="flex justify-center">
-          <li> NEW IN</li>
-          <li> 의류</li>
-          <li> 슈즈</li>
-          <li> 가방</li>
-          <li> 액세서리</li>
-          <li> 주얼리</li>
-          <li> SALE</li>
-          <li> DESIGNERS</li>
-        </ul>
-      </section> */
   );
 }
 
