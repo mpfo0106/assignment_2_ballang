@@ -5,10 +5,7 @@ import Page from "../../Page/Page";
 import calculator from "../../utils/calculator";
 import { useAuth } from "../../contexts/auth.context";
 import { useDispatch } from "react-redux";
-import {
-  ADD_ITEM,
-  addItemActionCreator,
-} from "../../store/reducers/cart.reducer";
+import { addCart } from "../../store/reducers/cart.reducer";
 
 function ProductDetailPage() {
   const { goodId } = useParams();
@@ -27,7 +24,7 @@ function ProductDetailPage() {
   const handleClickAddCart = () => {
     if (isLoggedIn) {
       const updatedGood = { ...good, selectedOption };
-      dispatch(addItemActionCreator(updatedGood));
+      dispatch(addCart(updatedGood));
       const addCartConfirm = window.confirm(
         "해당 상품을 쇼핑백에 담았습니다. \n 쇼핑백으로 이동하시겠습니까?"
       );
