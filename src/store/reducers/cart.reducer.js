@@ -1,31 +1,33 @@
-// export const ADD_ITEM = "cart/addItem";
-// export const REMOVE_ITEM = "cart/removeItem";
+export const ADD_ITEM = "cart/addItem";
+export const REMOVE_ITEM = "cart/removeItem";
 
-// export const addItemActionCreator = (payload) => ({ type: ADD_ITEM, payload });
-// export const removeItemActionCreator = (payload) => ({
-//   type: REMOVE_ITEM,
-//   payload,
-// });
+const initialState = {
+  goods: [],
+};
 
-// const initialState = {
-//   items: [],
-//   totalPrice: 0,
-// };
+export default function cartReducer(state = initialState, action) {
+  const newState = { ...state };
 
-// export default function cartReducer(state = initialState, action) {
-//   const newState = { ...state };
+  if (action.type === ADD_ITEM) {
+    const newItem = action.payload;
+    const newGoods = [...state.goods, newItem];
 
-//   if (action.type === ADD_ITEM) {
-//     const newItem = action.payload;
-//     const newItems = [...state.items, newItem];
+    newState.goods = newGoods;
+  } else if (action.type === REMOVE_ITEM) {
+    const itemIdToRemove = action.payload;
+    const newGoods = state.goods.filter((item) => item.id !== itemIdToRemove);
 
-//     newState.items = newItems;
-//   } else if (action.type === REMOVE_ITEM) {
-//     const itemIdToRemove = action.payload;
-//     const newItems = state.items.filter((item) => item.id !== itemIdToRemove);
+    newState.goods = newGoods;
+  }
 
-//     newState.items = newItems;
-//   }
+  return newState;
+}
 
-//   return newState;
-// }
+export const addItemActionCreator = (payload) => ({
+  type: ADD_ITEM,
+  payload,
+});
+export const removeItemActionCreator = (payload) => ({
+  type: REMOVE_ITEM,
+  payload,
+});

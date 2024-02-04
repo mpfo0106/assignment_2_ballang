@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api/items.api.js/api";
 import Page from "../../Page/Page";
 import calculator from "../../utils/calculator";
 import { useAuth } from "../../contexts/auth.context";
+import { useDispatch } from "react-redux";
+import {
+  ADD_ITEM,
+  addItemActionCreator,
+} from "../../store/reducers/cart.reducer";
 
 function ProductDetailPage() {
   const { goodId } = useParams();
   const [good, setGood] = useState(null);
+  const [selectedOption, setSelectedOption] = useState("");
   const { isLoggedIn } = useAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     api.goods.getGood(goodId).then((data) => setGood(data));
@@ -19,11 +26,12 @@ function ProductDetailPage() {
 
   const handleClickAddCart = () => {
     if (isLoggedIn) {
+      const updatedGood = { ...good, selectedOption };
+      dispatch(addItemActionCreator(updatedGood));
       const addCartConfirm = window.confirm(
         "해당 상품을 쇼핑백에 담았습니다. \n 쇼핑백으로 이동하시겠습니까?"
       );
       if (addCartConfirm) {
-        console.log("참");
         navigate("/cart");
       }
     } else {
@@ -78,7 +86,8 @@ function ProductDetailPage() {
           <hr className="border-t-2 border-gray-600 my-6" />
           <h3 className="font-bold">옵션 선택</h3>
           <select
-            defaultValue=""
+            value={selectedOption}
+            onChange={(e) => setSelectedOption(e.target.value)}
             className="block w-full mt-2 mb-4 p-2 border border-gray-400 rounded"
           >
             <option value="" disabled>
