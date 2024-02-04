@@ -5,10 +5,10 @@ import Footer from "../../components/Footer";
 
 function DefaultLayout() {
   return (
-    <div className="bg-black">
-      <div className="max-w-[400px] h-screen bg-white mx-auto flex flex-col">
+    <div className="bg-white">
+      <div className="h-screen bg-white mx-auto flex flex-col">
         <Header />
-        {/* <Outlet /> */}
+        <Outlet />
 
         <Footer />
       </div>

@@ -4,10 +4,12 @@ import GoodsListItem from "../GoodsListItem";
 function GoodsList({ goods }) {
   return (
     <section>
-      <h2>발란 아이템</h2>
-      <ul>
+      <ul className="grid grid-cols-4 gap-4">
         {goods.map((good) => (
-          <li key={good.goodsno}>
+          <li
+            key={good.goodsno}
+            className="border border-gray-200 rounded-lg overflow-hidden"
+          >
             <GoodsListItem good={good} />
           </li>
         ))}
