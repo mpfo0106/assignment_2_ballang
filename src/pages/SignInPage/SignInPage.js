@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { useAuth } from "../../contexts/auth.context";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toggleLogin } from "../../store/reducers/user.reducer";
 
 function SignInPage() {
   const { isLoggedIn, signIn } = useAuth();
   const [username, setUsername] = useState("udemy");
   const [password, setPassword] = useState("udemy");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleClickSignIn = () => {
     if (!username || !password)
@@ -14,6 +17,7 @@ function SignInPage() {
 
     if (username === "udemy" && password === "udemy") {
       signIn();
+      dispatch(toggleLogin()); // store 에 로그인 저장
       navigate("/");
     } else {
       return alert("아이디 또는 비밀번호가 잘못되었습니다.");

@@ -13,7 +13,7 @@ function CartPage() {
 
   return (
     <Page>
-      <h2 className="text-center text-4xl">Shopping bag</h2>
+      <h2 className="text-center text-4xl">장바구니</h2>
       <ul className="grid grid-cols-4 gap-4">
         {goods.map((good, index) => (
           <li

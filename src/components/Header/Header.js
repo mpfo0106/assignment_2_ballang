@@ -1,9 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/auth.context";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLogin } from "../../store/reducers/user.reducer";
 
 function Header() {
   const { isLoggedIn, logOut } = useAuth();
+  const userId = useSelector((state) => state.user.id);
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    logOut(); // Call the logout function from your auth context
+    dispatch(toggleLogin()); // Dispatch the action to update the Redux store
+  };
 
   return (
     <div className="bg-white">
@@ -13,7 +22,11 @@ function Header() {
 
         <div className=" text-white py-2 px-4 ">
           {isLoggedIn ? (
-            <div onClick={logOut}>로그아웃</div>
+            <>
+              <div onClick={handleLogOut}>로그아웃</div>
+
+              <div>{userId}</div>
+            </>
           ) : (
             <div>
               <Link to="/sign-in">로그인</Link>
